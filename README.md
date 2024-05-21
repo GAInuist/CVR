@@ -1,4 +1,4 @@
-# CVR  
+# CVR 基于深度学习的虚拟图像到真实图像的转换
 开发平台：Pycharm
 环境需求：Linux、Python3、Anaconda虚拟环境配置工具、CPU or NVIDIA GPU + CuDNN
 虚拟环境需要安装的软件包：
