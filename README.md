@@ -97,7 +97,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 
 ## 可能遇到的问题：
 
-1.运行SAM中的predict.py时如出现以下情况：
+### 1.运行SAM中的predict.py时如出现以下情况：
 
  ![image](https://github.com/GAInuist/CVR/assets/157414652/065959af-aae8-4c0e-ac23-ce4f2ef55fb3)
 
@@ -105,7 +105,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 
  ![image](https://github.com/GAInuist/CVR/assets/157414652/1684c29a-a629-48a8-b8c8-a1e399f1ff6e)
 
-2.安装basicsr包时如出现以下情况：
+### 2.安装basicsr包时如出现以下情况：
 
  ![image](https://github.com/GAInuist/CVR/assets/157414652/6d12ef3e-5982-4322-9d05-6ebdda8f35bd)
 
@@ -121,7 +121,7 @@ pip install -i https://mirrors.aliyun.com/pypi/simple tb-nightly
 
 上述情况都满足之后安装basicsr包才能成功。
 
-3.安装PyQt5后运行UI.py时如果出现以下情况：
+### 3.安装PyQt5后运行UI.py时如果出现以下情况：
 
  ![image](https://github.com/GAInuist/CVR/assets/157414652/f853ee75-9a4e-47c1-b522-1242d2326125)
 
