@@ -18,9 +18,9 @@
 14.	PyQt5
 注：虚拟环境创建指令为 conda create -name 自主命名环境 python==3.9
 
-SAM网址：
-SDM网址：
-HAT网址：
+Segment Anything 原网址：https://github.com/facebookresearch/segment-anything
+Semantic Image Synthesis via Diffusion Models(SDM) 原网址：https://github.com/WeilunWang/semantic-diffusion-model
+HAT 原网址：https://github.com/XPixelGroup/HAT
 
 文件结构
 ![b563ce9ce3c0f565661a3b7bb726b82](https://github.com/GAInuist/CVR/assets/157414652/917a99d6-26d2-4e4a-bb4f-fd5226a37ab5)
@@ -38,8 +38,10 @@ HAT_SRx4_ImageNet-pretrain.pth - Google 云端硬盘
 存放位置：CVR/HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth
 
 本文件中已将三个模型的执行过程通过终端指令调用的方式进行集成，可以直接通过运行UI.py文件进行调用，下面将讲解一些使用时可以按照实际需要更改的地方。
-	主界面：
+主界面：
+
 ![image](https://github.com/GAInuist/CVR/assets/157414652/2cd4fd43-d11c-41ad-b01f-97eb5161dc09)
+
 UI界面中可以选择图像生成、语义分割、语义合成以及超分辨率化四种操作类型。
 选择图像生成即为将虚拟图像作为输入生成真实图像；
 语义分割、语义合成以及超分辨率化为三个阶段的子任务。
