@@ -18,23 +18,12 @@
 14.	PyQt5
 注：虚拟环境创建指令为 conda create -name 自主命名环境 python==3.9
 
+SAM网址：
+SDM网址：
+HAT网址：
+
 文件结构
-CVR---------Background  背景图片存放位置
-|----------dataset
-	      |----------Sea
-			  |---------annoataions
-					|---------validation  SAM模型对虚拟图像进行语义分割的结果存放位置
-			  |---------images
-					|---------validation  输入的虚拟海上舰艇图像的存放位置，使用时只需在该位置放入虚拟海上舰艇图像即可。
-|----------HAT-main  超分模型HAT
-|----------output
-             |---------images  虚拟图像存放的位置
-             |---------labels   虚拟语义分割图像存放的位置
-             |---------samples  生成的真实图像存放的位置
-|----------SAM    语义分割模型Segment Anything
-|----------SDM    语义扩散模型Semantic Diffusion Model
-|----------main.py  程序主代码
-|----------UI.py    运行此代码进入交互界面
+![b563ce9ce3c0f565661a3b7bb726b82](https://github.com/GAInuist/CVR/assets/157414652/917a99d6-26d2-4e4a-bb4f-fd5226a37ab5)
 
 使用方式
 	下载模型权重文件到本地并将其放置到指定位置
