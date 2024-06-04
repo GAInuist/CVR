@@ -16,6 +16,7 @@
 12.	blobfile==2.1.1
 13.	scipy
 14.	PyQt5
+
 注：虚拟环境创建指令为 conda create -name 自主命名环境 python==3.9
 
 Segment Anything 原网址：https://github.com/facebookresearch/segment-anything
