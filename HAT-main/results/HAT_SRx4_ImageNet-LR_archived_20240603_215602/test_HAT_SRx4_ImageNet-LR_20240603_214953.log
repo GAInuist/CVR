@@ -1,0 +1,252 @@
+2024-06-03 21:49:53,772 INFO: 
+                ____                _       _____  ____
+               / __ ) ____ _ _____ (_)_____/ ___/ / __ \
+              / __  |/ __ `// ___// // ___/\__ \ / /_/ /
+             / /_/ // /_/ /(__  )/ // /__ ___/ // _, _/
+            /_____/ \__,_//____//_/ \___//____//_/ |_|
+     ______                   __   __                 __      __
+    / ____/____   ____   ____/ /  / /   __  __ _____ / /__   / /
+   / / __ / __ \ / __ \ / __  /  / /   / / / // ___// //_/  / /
+  / /_/ // /_/ // /_/ // /_/ /  / /___/ /_/ // /__ / /<    /_/
+  \____/ \____/ \____/ \____/  /_____/\____/ \___//_/|_|  (_)
+    
+Version Information: 
+	BasicSR: 1.3.4.9
+	PyTorch: 2.3.0
+	TorchVision: 0.18.0
+2024-06-03 21:49:53,773 INFO: 
+  datasets:[
+    test_1:[
+      dataroot_lq: ../CVR/output/samples
+      io_backend:[
+        type: disk
+      ]
+      name: custom
+      type: SingleImageDataset
+      phase: test
+      scale: 4
+    ]
+  ]
+  manual_seed: 0
+  model_type: HATModel
+  name: HAT_SRx4_ImageNet-LR
+  network_g:[
+    compress_ratio: 3
+    conv_scale: 0.01
+    depths: [6, 6, 6, 6, 6, 6]
+    embed_dim: 180
+    img_range: 1.0
+    img_size: 64
+    in_chans: 3
+    mlp_ratio: 2
+    num_heads: [6, 6, 6, 6, 6, 6]
+    overlap_ratio: 0.5
+    resi_connection: 1conv
+    squeeze_factor: 30
+    type: HAT
+    upsampler: pixelshuffle
+    upscale: 4
+    window_size: 16
+  ]
+  num_gpu: 1
+  path:[
+    param_key_g: params_ema
+    pretrain_network_g: ./HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth
+    strict_load_g: True
+    results_root: /media/c402/LF/CVR1/HAT-main/results/HAT_SRx4_ImageNet-LR
+    log: /media/c402/LF/CVR1/HAT-main/results/HAT_SRx4_ImageNet-LR
+    visualization: /media/c402/LF/CVR1/HAT-main/results/HAT_SRx4_ImageNet-LR/visualization
+  ]
+  scale: 4
+  tile:[
+    tile_pad: 32
+    tile_size: 512
+  ]
+  val:[
+    save_img: True
+    suffix: None
+  ]
+  dist: False
+  rank: 0
+  world_size: 1
+  auto_resume: False
+  is_train: False
+
+2024-06-03 21:49:53,774 INFO: Dataset [SingleImageDataset] - custom is built.
+2024-06-03 21:49:53,774 INFO: Number of test images in custom: 0
+2024-06-03 21:49:54,561 INFO: Network [HAT] is created.
+2024-06-03 21:49:54,781 INFO: Network: HAT, with parameters: 20,772,507
+2024-06-03 21:49:54,782 INFO: HAT(
+  (conv_first): Conv2d(3, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (patch_embed): PatchEmbed(
+    (norm): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+  )
+  (patch_unembed): PatchUnEmbed()
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): RHAG(
+      (residual_group): AttenBlocks(
+        (blocks): ModuleList(
+          (0): HAB(
+            (norm1): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=180, out_features=540, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=180, out_features=180, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (conv_block): CAB(
+              (cab): Sequential(
+                (0): Conv2d(180, 60, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): GELU(approximate='none')
+                (2): Conv2d(60, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (3): ChannelAttention(
+                  (attention): Sequential(
+                    (0): AdaptiveAvgPool2d(output_size=1)
+                    (1): Conv2d(180, 6, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU(inplace=True)
+                    (3): Conv2d(6, 180, kernel_size=(1, 1), stride=(1, 1))
+                    (4): Sigmoid()
+                  )
+                )
+              )
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=180, out_features=360, bias=True)
+              (act): GELU(approximate='none')
+              (fc2): Linear(in_features=360, out_features=180, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1-5): 5 x HAB(
+            (norm1): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=180, out_features=540, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=180, out_features=180, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (conv_block): CAB(
+              (cab): Sequential(
+                (0): Conv2d(180, 60, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): GELU(approximate='none')
+                (2): Conv2d(60, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (3): ChannelAttention(
+                  (attention): Sequential(
+                    (0): AdaptiveAvgPool2d(output_size=1)
+                    (1): Conv2d(180, 6, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU(inplace=True)
+                    (3): Conv2d(6, 180, kernel_size=(1, 1), stride=(1, 1))
+                    (4): Sigmoid()
+                  )
+                )
+              )
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=180, out_features=360, bias=True)
+              (act): GELU(approximate='none')
+              (fc2): Linear(in_features=360, out_features=180, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (overlap_attn): OCAB(
+          (norm1): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+          (qkv): Linear(in_features=180, out_features=540, bias=True)
+          (unfold): Unfold(kernel_size=(24, 24), dilation=1, padding=4, stride=16)
+          (softmax): Softmax(dim=-1)
+          (proj): Linear(in_features=180, out_features=180, bias=True)
+          (norm2): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=180, out_features=360, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=360, out_features=180, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (conv): Conv2d(180, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (patch_embed): PatchEmbed()
+      (patch_unembed): PatchUnEmbed()
+    )
+    (1-5): 5 x RHAG(
+      (residual_group): AttenBlocks(
+        (blocks): ModuleList(
+          (0-5): 6 x HAB(
+            (norm1): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=180, out_features=540, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=180, out_features=180, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (conv_block): CAB(
+              (cab): Sequential(
+                (0): Conv2d(180, 60, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (1): GELU(approximate='none')
+                (2): Conv2d(60, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                (3): ChannelAttention(
+                  (attention): Sequential(
+                    (0): AdaptiveAvgPool2d(output_size=1)
+                    (1): Conv2d(180, 6, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU(inplace=True)
+                    (3): Conv2d(6, 180, kernel_size=(1, 1), stride=(1, 1))
+                    (4): Sigmoid()
+                  )
+                )
+              )
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=180, out_features=360, bias=True)
+              (act): GELU(approximate='none')
+              (fc2): Linear(in_features=360, out_features=180, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (overlap_attn): OCAB(
+          (norm1): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+          (qkv): Linear(in_features=180, out_features=540, bias=True)
+          (unfold): Unfold(kernel_size=(24, 24), dilation=1, padding=4, stride=16)
+          (softmax): Softmax(dim=-1)
+          (proj): Linear(in_features=180, out_features=180, bias=True)
+          (norm2): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=180, out_features=360, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=360, out_features=180, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (conv): Conv2d(180, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (patch_embed): PatchEmbed()
+      (patch_unembed): PatchUnEmbed()
+    )
+  )
+  (norm): LayerNorm((180,), eps=1e-05, elementwise_affine=True)
+  (conv_after_body): Conv2d(180, 180, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv_before_upsample): Sequential(
+    (0): Conv2d(180, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): LeakyReLU(negative_slope=0.01, inplace=True)
+  )
+  (upsample): Upsample(
+    (0): Conv2d(64, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): PixelShuffle(upscale_factor=2)
+    (2): Conv2d(64, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): PixelShuffle(upscale_factor=2)
+  )
+  (conv_last): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+)
+2024-06-03 21:49:55,138 INFO: Loading HAT model from ./HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth, with param key: [params_ema].
+2024-06-03 21:49:55,347 INFO: Model [HATModel] is created.
+2024-06-03 21:49:55,347 INFO: Testing custom...

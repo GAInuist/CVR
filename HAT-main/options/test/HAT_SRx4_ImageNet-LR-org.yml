@@ -1,0 +1,51 @@
+datasets:
+  test_1:
+    dataroot_lq: ../CVR/output/samples
+    io_backend:
+      type: disk
+    name: custom
+    type: SingleImageDataset
+manual_seed: 0
+model_type: HATModel
+name: HAT_SRx4_ImageNet-LR
+network_g:
+  compress_ratio: 3
+  conv_scale: 0.01
+  depths:
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  embed_dim: 180
+  img_range: 1.0
+  img_size: 64
+  in_chans: 3
+  mlp_ratio: 2
+  num_heads:
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  overlap_ratio: 0.5
+  resi_connection: 1conv
+  squeeze_factor: 30
+  type: HAT
+  upsampler: pixelshuffle
+  upscale: 4
+  window_size: 16
+num_gpu: 1
+path:
+  param_key_g: params_ema
+  pretrain_network_g: ./HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth
+  strict_load_g: true
+scale: 4
+tile:
+  tile_pad: 32
+  tile_size: 512
+val:
+  save_img: true
+  suffix: null
