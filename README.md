@@ -28,20 +28,29 @@ HAT 原网址：https://github.com/XPixelGroup/HAT
 文件结构
 ![b563ce9ce3c0f565661a3b7bb726b82](https://github.com/GAInuist/CVR/assets/157414652/917a99d6-26d2-4e4a-bb4f-fd5226a37ab5)
 
-使用方式
-	下载模型权重文件到本地并将其放置到指定位置
-	语义分割模型下载点：
-model.pth - Google 云端硬盘
+##使用方式
+
+下载模型权重文件到本地并将其放置到指定位置
+
+语义分割模型下载点：
+
+[(https://drive.google.com/file/d/1hN---Ii52UCNnihmC2YrqkxdlcEHfgTN/view)](https://drive.google.com/file/d/1hN---Ii52UCNnihmC2YrqkxdlcEHfgTN/view)
+
 
 存放位置：CVR/SAM/experiment/model/semantic_sam/model.pth
 
-语义合成模型下载点：seas_256-300000-l1.pt - Google 云端硬盘
+
+语义合成模型下载点：
+[https://drive.google.com/file/d/1NE3AiwsKl7l3TJyPCyxvysc7cxSttvM5/view](https://drive.google.com/file/d/1NE3AiwsKl7l3TJyPCyxvysc7cxSttvM5/view)
+
 
 存放位置：CVR/SDM/OUTPUT/save/seas_256-300000-l1.pt
 
 超分模型下载点：
 
-HAT_SRx4_ImageNet-pretrain.pth - Google 云端硬盘
+
+[HAT_SRx4_ImageNet-pretrain.pth - Google 云端硬盘](https://drive.google.com/file/d/1NKYfmexIQ3gXe3Td3ef5jXHXUGxJBJkg/view)
+
 
 存放位置：CVR/HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth
 
