@@ -63,22 +63,33 @@ HAT 原网址：https://github.com/XPixelGroup/HAT
 ![image](https://github.com/GAInuist/CVR/assets/157414652/2cd4fd43-d11c-41ad-b01f-97eb5161dc09)
 
 UI界面中可以选择图像生成、语义分割、语义合成以及超分辨率化四种操作类型。
+
 选择图像生成即为将虚拟图像作为输入生成真实图像；
+
 语义分割、语义合成以及超分辨率化为三个阶段的子任务。
-	使用时只需选择输入文件的文件夹即可。
+
+使用时只需选择输入文件的文件夹即可。
 
 每个操作类型的输入图片文件夹选择说明：
+
 1、	图像生成：存放虚拟图像的文件夹
+
 2、	语义分割：存放虚拟图像的文件夹
+
 3、	语义合成：选择的文件夹内需存放images/validation和annotations/validation两种文件，images/validation中存放原始虚拟图像，annotations/validation存放原始虚拟图像对应的分割图像
+
 4、	超分辨率化：任意存放需要超分的图像的文件夹
 
 各阶段任务的生成结果存放位置：
-	语义分割的生成结果所在位置：CVR/dataset/Sea/annotations/validation/
-	语义合成的生成结果所在位置：CVR/output/samples/
-	超分辨率化的生成结果所在位置：CVR/HAT-main/results/HAT_SRx4_ImageNet-LR/visualization/custom/
+
+语义分割的生成结果所在位置：CVR/dataset/Sea/annotations/validation/
+	
+语义合成的生成结果所在位置：CVR/output/samples/
+	
+超分辨率化的生成结果所在位置：CVR/HAT-main/results/HAT_SRx4_ImageNet-LR/visualization/custom/
 
 Pytorch-cuda的下载方式：
+
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
 ## 可能遇到的问题：
