@@ -81,22 +81,39 @@ UI界面中可以选择图像生成、语义分割、语义合成以及超分辨
 Pytorch-cuda的下载方式：
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
-可能遇到的问题：
+##可能遇到的问题：
 1.运行SAM中的predict.py时如出现以下情况：
+
  ![image](https://github.com/GAInuist/CVR/assets/157414652/065959af-aae8-4c0e-ac23-ce4f2ef55fb3)
+
 将下面红框位置删除即可：
+
  ![image](https://github.com/GAInuist/CVR/assets/157414652/1684c29a-a629-48a8-b8c8-a1e399f1ff6e)
+
 2.安装basicsr包时如出现以下情况：
+
  ![image](https://github.com/GAInuist/CVR/assets/157414652/6d12ef3e-5982-4322-9d05-6ebdda8f35bd)
-	安装cython包后再安装basicsr包
-	如果安装时还遇到类似以下情况时，安装好红框位置的包即可：
+
+安装cython包后再安装basicsr包
+
+如果安装时还遇到类似以下情况时，安装好红框位置的包即可：
+
  ![image](https://github.com/GAInuist/CVR/assets/157414652/e2c52579-6f93-48f7-99b1-669a8efb111b)
-	安装basicsr包前还得安装tb-nightly包：
+
+安装basicsr包前还得安装tb-nightly包：
+
 pip install -i https://mirrors.aliyun.com/pypi/simple tb-nightly
+
 上述情况都满足之后安装basicsr包才能成功。
-	3.安装PyQt5后运行UI.py时如果出现以下情况：
+
+3.安装PyQt5后运行UI.py时如果出现以下情况：
+
  ![image](https://github.com/GAInuist/CVR/assets/157414652/f853ee75-9a4e-47c1-b522-1242d2326125)
-	安装丢失依赖：
+
+安装丢失依赖：
+
 sudo apt-get update
-sudo apt-get install libx11-xcb1 libxcb1 libxcb-util1 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0
+
+sudo apt-get install libx11-xcb1 libxcb1 libxcb-util1 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 
+libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0
 
