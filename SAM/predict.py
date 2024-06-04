@@ -12,7 +12,7 @@ import argparse
 # img_path = r'../CVR/dataset/Sea/images/validation'
 # output_gray_path = r'../CVR/dataset/Sea/annotations/validation'  # 输出路径
 # model_pth = r'/media/c402/Windows/LF/finetune-anything-main/sam_ckpt/sam_FA_torcs.pth'
-model_pth = r'../CVR/SAM/experiment/model/semantic_sam/model.pth'
+model_pth = r'../CVR-main/SAM/experiment/model/semantic_sam/model.pth'
 # model_pth = r'experiment/model/semantic_sam/model.pth'
 
 # 使用argparse解析命令行参数
