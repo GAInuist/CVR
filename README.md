@@ -31,15 +31,21 @@ HAT 原网址：https://github.com/XPixelGroup/HAT
 	下载模型权重文件到本地并将其放置到指定位置
 	语义分割模型下载点：
 model.pth - Google 云端硬盘
+
 存放位置：CVR/SAM/experiment/model/semantic_sam/model.pth
-语义合成模型下载点：
-	seas_256-300000-l1.pt - Google 云端硬盘
+
+语义合成模型下载点：seas_256-300000-l1.pt - Google 云端硬盘
+
 存放位置：CVR/SDM/OUTPUT/save/seas_256-300000-l1.pt
+
 超分模型下载点：
+
 HAT_SRx4_ImageNet-pretrain.pth - Google 云端硬盘
+
 存放位置：CVR/HAT-main/model/HAT_SRx4_ImageNet-pretrain.pth
 
 本文件中已将三个模型的执行过程通过终端指令调用的方式进行集成，可以直接通过运行UI.py文件进行调用，下面将讲解一些使用时可以按照实际需要更改的地方。
+
 主界面：
 
 ![image](https://github.com/GAInuist/CVR/assets/157414652/2cd4fd43-d11c-41ad-b01f-97eb5161dc09)
