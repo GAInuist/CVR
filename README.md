@@ -19,6 +19,8 @@
 
 注：虚拟环境创建指令为 conda create -name 自主命名环境 python==3.9
 
+实验中，我们在SAM,SDM和HAT的基础上修改了部分代码，并重新进行训练，如果对这个三个模型有兴趣的，可参考以下原网址：
+
 Segment Anything 原网址：https://github.com/facebookresearch/segment-anything
 
 Semantic Image Synthesis via Diffusion Models(SDM) 原网址：https://github.com/WeilunWang/semantic-diffusion-model
