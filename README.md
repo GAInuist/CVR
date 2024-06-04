@@ -28,7 +28,7 @@ HAT 原网址：https://github.com/XPixelGroup/HAT
 文件结构
 ![b563ce9ce3c0f565661a3b7bb726b82](https://github.com/GAInuist/CVR/assets/157414652/917a99d6-26d2-4e4a-bb4f-fd5226a37ab5)
 
-##使用方式
+## 使用方式
 
 下载模型权重文件到本地并将其放置到指定位置
 
@@ -58,7 +58,7 @@ HAT 原网址：https://github.com/XPixelGroup/HAT
 
 本文件中已将三个模型的执行过程通过终端指令调用的方式进行集成，可以直接通过运行UI.py文件进行调用，下面将讲解一些使用时可以按照实际需要更改的地方。
 
-主界面：
+## 主界面：
 
 ![image](https://github.com/GAInuist/CVR/assets/157414652/2cd4fd43-d11c-41ad-b01f-97eb5161dc09)
 
@@ -81,7 +81,8 @@ UI界面中可以选择图像生成、语义分割、语义合成以及超分辨
 Pytorch-cuda的下载方式：
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
-##可能遇到的问题：
+## 可能遇到的问题：
+
 1.运行SAM中的predict.py时如出现以下情况：
 
  ![image](https://github.com/GAInuist/CVR/assets/157414652/065959af-aae8-4c0e-ac23-ce4f2ef55fb3)
