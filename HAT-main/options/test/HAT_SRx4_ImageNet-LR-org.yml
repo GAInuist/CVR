@@ -1,6 +1,6 @@
 datasets:
   test_1:
-    dataroot_lq: ../CVR/output/samples
+    dataroot_lq: ../CVR-main/output/samples
     io_backend:
       type: disk
     name: custom
