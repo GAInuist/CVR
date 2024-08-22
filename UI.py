@@ -216,88 +216,142 @@ class MainWindow(QWidget):
         folder_path = QFileDialog.getExistingDirectory(self, '选择文件夹')
         if folder_path:
             self.selected_folder_path = folder_path
+            print(f"Selected folder: {self.selected_folder_path}")  # Debug output
             self.show_first_image(folder_path, self.image_display_label_input)
             self.show_default_output_image(self.op_type_combo.currentIndex())
 
     def show_first_image(self, folder_path, display_label):
-        for file_name in os.listdir(folder_path):
-            if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
-                self.first_image_name = os.path.splitext(file_name)[0]  # 仅获取文件名，不包括后缀
-                image_path = os.path.join(folder_path, file_name)
-                pixmap = QPixmap(image_path)
-                display_label.setPixmap(pixmap.scaled(display_label.size(), Qt.KeepAspectRatio))
-                break
+        self.current_operation_type = self.current_operation_type
+        try:
+            if self.current_operation_type == 3:
+                print("folder_path",folder_path)
+                folder_path = os.path.join(folder_path, 'images/validation')
+                for file_name in os.listdir(folder_path):
+                    if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
+                        self.first_image_name = os.path.splitext(file_name)[0]  # 仅获取文件名，不包括后缀
+                        image_path = os.path.join(folder_path, file_name)
+                        print("display_label",display_label)
+                        print(f"Input image path: {image_path}")  # Debug output
+                        pixmap = QPixmap(image_path)
+                        display_label.setPixmap(pixmap.scaled(display_label.size(), Qt.KeepAspectRatio))
+                        break
+            else:
+                for file_name in os.listdir(folder_path):
+                    if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
+                        self.first_image_name = os.path.splitext(file_name)[0]  # 仅获取文件名，不包括后缀
+                        image_path = os.path.join(folder_path, file_name)
+                        print("display_label",display_label)
+                        print(f"Input image path: {image_path}")  # Debug output
+                        pixmap = QPixmap(image_path)
+                        display_label.setPixmap(pixmap.scaled(display_label.size(), Qt.KeepAspectRatio))
+                        break
+        except Exception as e:
+            print(f"Error in show_first_image: {e}")
 
     def show_default_output_image(self, operation_type):
         self.current_operation_type = operation_type
-        default_output_path = self.default_output_paths.get(operation_type)
-        if default_output_path and os.path.exists(default_output_path):
-            self.show_matching_image(default_output_path, self.image_display_label_output)
-        else:
-            self.image_display_label_output.setText("No default output image")
+        try:
+            if operation_type == 3:  # 语义合成操作类型
+                validation_image_path = os.path.join(self.selected_folder_path, 'images/validation')
+                default_output_path = './output/samples'
+                if os.path.exists(validation_image_path):
+                    # self.show_matching_image(validation_image_path, self.image_display_label_output)
+                    self.show_matching_image(default_output_path, self.image_display_label_output)
+                    print("validation_image_path:",validation_image_path)
+                    print("default_output_path:", default_output_path)
+                else:
+                    self.show_matching_image(default_output_path, self.image_display_label_output)
+            else:
+                default_output_path = self.default_output_paths.get(operation_type)
+                if default_output_path and os.path.exists(default_output_path):
+                    self.show_matching_image(default_output_path, self.image_display_label_output)
+                    print("default_output_path:",default_output_path)
+                else:
+                    self.image_display_label_output.setText("No default output image")
+        except Exception as e:
+            print(f"Error in show_default_output_image: {e}")
 
     def show_matching_image(self, folder_path, display_label):
-        if self.selected_folder_path and self.first_image_name:
-            for file_name in os.listdir(folder_path):
-                if self.first_image_name in os.path.splitext(file_name)[0]:  # 比较时放宽条件，包含即可
-                    matching_image_path = os.path.join(folder_path, file_name)
-                    if os.path.exists(matching_image_path):
-                        pixmap = QPixmap(matching_image_path)
-                        display_label.setPixmap(pixmap.scaled(display_label.size(), Qt.KeepAspectRatio))
-                    else:
-                        display_label.clear()
-                    break
+        try:
+            if self.selected_folder_path and self.first_image_name:
+                for file_name in os.listdir(folder_path):
+                    if self.first_image_name in os.path.splitext(file_name)[0]:  # 比较时放宽条件，包含即可
+                        matching_image_path = os.path.join(folder_path, file_name)
+                        print(f"Matching image path: {matching_image_path}")  # Debug output
+                        if os.path.exists(matching_image_path):
+                            pixmap = QPixmap(matching_image_path)
+                            display_label.setPixmap(pixmap.scaled(display_label.size(), Qt.KeepAspectRatio))
+                        else:
+                            display_label.clear()
+                        break
+        except Exception as e:
+            print(f"Error in show_matching_image: {e}")
 
     def update_output_image(self):
-        if self.selected_folder_path and self.current_operation_type:
-            default_output_path = self.default_output_paths.get(self.current_operation_type)
-            if default_output_path:
-                self.show_matching_image(default_output_path, self.image_display_label_output)
+        try:
+            if self.selected_folder_path and self.current_operation_type:
+                default_output_path = self.default_output_paths.get(self.current_operation_type)
+                if self.current_operation_type == 3:  # 语义合成操作类型
+                    validation_image_path = os.path.join(self.selected_folder_path, 'images/validation')
+                    if os.path.exists(validation_image_path):
+                        # self.show_matching_image(validation_image_path, self.image_display_label_output)
+                        self.show_matching_image(default_output_path, self.image_display_label_output)
+                    else:
+                        self.show_matching_image(default_output_path, self.image_display_label_output)
+                elif default_output_path:
+                    self.show_matching_image(default_output_path, self.image_display_label_output)
+        except Exception as e:
+            print(f"Error in update_output_image: {e}")
 
     def generate_button_click(self):
-        if self.selected_folder_path:
-            current_index = self.op_type_combo.currentIndex()
-            script_path = ''
-            if current_index == 1:
-                script_path = 'main.py'
-                image_count = self.image_count_spinbox.value()
-                subprocess.run(
-                    ['python', script_path, '--virtual_image_path', self.selected_folder_path, '--num_samples',
-                     str(image_count)])
-            elif current_index == 2:
-                script_path = 'SAM/predict.py'
-                subprocess.run(['python', script_path, '--img_path', self.selected_folder_path])
-            elif current_index == 3:
-                num_samples = self.image_count_spinbox.value()
-                script_path = 'SDM/image_sample.py'
-                subprocess.run(['python', script_path, '--data_dir', self.selected_folder_path, '--dataset_mode',
-                                'seas', '--attention_resolution', '32,16,8', '--diffusion_steps', '1000',
-                                '--image_size', '256', '--learn_sigma', 'True', '--noise_schedule', 'linear',
-                                '--num_channels', '256', '--num_head_channels', '64', '--num_res_blocks', '2',
-                                '--resblock_updown', 'True', '--use_fp16', 'True', '--use_scale_shift_norm', 'True',
-                                '--num_classes', '5', '--class_cond', 'True', '--no_instance', 'True', '--batch_size',
-                                '1',
-                                '--num_samples', str(num_samples - 1), '--model_path',
-                                './SDM/OUTPUT/save/seas_256-300000-l1.pt',
-                                '--results_path', './output', '--s', '1.5', ])
-            elif current_index == 4:
-                script_path = './HAT-main/hat/test.py'
-                # Replace the path in the YAML file
-                self.replace_yaml_path('./HAT-main/options/test/HAT_SRx4_ImageNet-LR.yml', self.selected_folder_path)
-                subprocess.run(['python', script_path, '-opt', './HAT-main/options/test/HAT_SRx4_ImageNet-LR.yml'])
+        try:
+            if self.selected_folder_path:
+                current_index = self.op_type_combo.currentIndex()
+                script_path = ''
+                if current_index == 1:
+                    script_path = 'main.py'
+                    image_count = self.image_count_spinbox.value()
+                    subprocess.run(
+                        ['python', script_path, '--virtual_image_path', self.selected_folder_path, '--num_samples',
+                         str(image_count)])
+                elif current_index == 2:
+                    script_path = 'SAM/predict.py'
+                    subprocess.run(['python', script_path, '--img_path', self.selected_folder_path])
+                elif current_index == 3:
+                    num_samples = self.image_count_spinbox.value()
+                    script_path = 'SDM/image_sample.py'
+                    subprocess.run(['python', script_path, '--data_dir', self.selected_folder_path, '--dataset_mode',
+                                    'seas', '--attention_resolution', '32,16,8', '--diffusion_steps', '1000',
+                                    '--image_size', '256', '--learn_sigma', 'True', '--noise_schedule', 'linear',
+                                    '--num_channels', '256', '--num_head_channels', '64', '--num_res_blocks', '2',
+                                    '--resblock_updown', 'True', '--use_fp16', 'True', '--use_scale_shift_norm', 'True',
+                                    '--num_classes', '5', '--class_cond', 'True', '--no_instance', 'True', '--batch_size',
+                                    '1',
+                                    '--num_samples', str(num_samples - 1), '--model_path',
+                                    './SDM/OUTPUT/save/seas_256-300000-l1.pt',
+                                    '--results_path', './output', '--s', '1.5', ])
+                elif current_index == 4:
+                    script_path = './HAT-main/hat/test.py'
+                    self.replace_yaml_path('./HAT-main/options/test/HAT_SRx4_ImageNet-LR.yml', self.selected_folder_path)
+                    subprocess.run(['python', script_path, '-opt', './HAT-main/options/test/HAT_SRx4_ImageNet-LR.yml'])
 
-            self.show_default_output_image(current_index)  # 更新输出图像显示
+                self.show_default_output_image(current_index)  # 更新输出图像显示
+        except Exception as e:
+            print(f"Error in generate_button_click: {e}")
 
     def replace_yaml_path(self, yaml_file, new_path):
-        import yaml
-        with open(yaml_file, 'r') as file:
-            config = yaml.safe_load(file)
+        try:
+            import yaml
+            with open(yaml_file, 'r') as file:
+                config = yaml.safe_load(file)
 
-        # Replace the dataroot_lq path
-        config['datasets']['test_1']['dataroot_lq'] = new_path
+            # Replace the dataroot_lq path
+            config['datasets']['test_1']['dataroot_lq'] = new_path
 
-        with open(yaml_file, 'w') as file:
-            yaml.safe_dump(config, file)
+            with open(yaml_file, 'w') as file:
+                yaml.safe_dump(config, file)
+        except Exception as e:
+            print(f"Error in replace_yaml_path: {e}")
 
 
 if __name__ == '__main__':
